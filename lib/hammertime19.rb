@@ -105,7 +105,7 @@ module Hammertime
             false
           end
         end
-        menu.choice "Console (start a PRY session)" do
+        menu.choice "Console (start a pry session)" do
           yield.pry
           false
         end
