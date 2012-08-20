@@ -20,12 +20,14 @@ Gem::Specification.new do |s|
     "VERSION",
     "example.rb",
     "examples/loaderror.rb",
-    "hammertime.gemspec",
-    "lib/hammertime.rb"
+    "hammertime19.gemspec",
+    "lib/hammertime19.rb"
   ]
   s.homepage = "http://github.com/kl/hammertime19"
   s.require_paths = ["lib"]
   s.summary = "Exception debugging console for Ruby"
 
   s.add_dependency("highline", ["~> 1.5"])
+  s.add_dependency("pry", ">= 0.9.10")
+  s.add_dependency("binding_of_caller", ">= 0.6.7")
 end
