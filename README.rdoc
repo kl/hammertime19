@@ -93,6 +93,11 @@ This enables a fix-and-continue style of development:
 * Better integration with IRB to enable a "Retry" option.
 * Tests
 
+== Dependencies
+
+* pry (https://github.com/pry/pry)
+* binding_of_caller (https://github.com/banister/binding_of_caller)
+
 == Copyright
 
 Copyright (c) 2010 Avdi Grimm. See LICENSE for details.
