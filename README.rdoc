@@ -61,13 +61,19 @@ This enables a fix-and-continue style of development:
     4. Permit by line (don't ask about future errors raised from this point)
     5. Backtrace (show the call stack leading up to the error)              
     6. Debug (start a debugger)                                             
-    7. Console (start an IRB session)                                       
+    7. Console (start a pry session)                                       
     What now?
     7
 
-    >> $broken = false
+    From: test.rb @ line 5 Object#faulty_method:
+
+        5: def faulty_method
+     => 6:   raise "Oh no!" if $broken
+        7: end
+
+    [1] pry(main)> $broken = false
     => false
-    >> exit
+    [2] pry(main)> exit
 
     1. Continue (process the exception normally)
     2. Ignore (proceed without raising an exception)
