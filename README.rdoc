@@ -7,6 +7,9 @@ hammertime19 is a fork of Avid Grimm's hammertime gem: https://github.com/avdi/h
 hammertime19 is a Ruby 1.9.2+ (MRI and RBX) only version that adds support for starting a pry (https://github.com/pry/pry)
 session at the exception raise site.
 
+== Install
+
+gem install hammertime19
 
 == Synopsis
 
