@@ -12,7 +12,7 @@ session at the exception raise site.
 
 Simply require the Hammertime library:
 
-    require 'hammertime'
+    require 'hammertime19'
 
     $broken = true
 
