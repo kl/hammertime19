@@ -1,6 +1,12 @@
-= hammertime
+= hammertime19
 
 An interactive error console similar to those found in Lisp and Smalltalk environments.
+
+hammertime19 is a fork of Avid Grimm's hammertime gem: https://github.com/avdi/hammertime
+
+hammertime19 is a Ruby 1.9.2+ (MRI and RBX) only version that adds support for starting a pry (https://github.com/pry/pry)
+session at the exception raise site.
+
 
 == Synopsis
 
@@ -35,7 +41,7 @@ When an error is raised, a menu of possible actions will be presented at the con
     4. Permit by line (don't ask about future errors raised from this point)
     5. Backtrace (show the call stack leading up to the error)
     6. Debug (start a debugger)
-    7. Console (start an IRB session)
+    7. Console (start a pry session)
     What now?
 
 This enables a fix-and-continue style of development:
@@ -82,7 +88,6 @@ This enables a fix-and-continue style of development:
 == TODO
 
 * Better integration with IRB to enable a "Retry" option.
-* Start console/debugger at fail site, instead of in Hammertime code.
 * Tests
 
 == Copyright
