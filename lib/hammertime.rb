@@ -1,5 +1,14 @@
+#encoding: utf-8
+
+# https://github.com/kl/hammertime
+# Forked from https://github.com/avdi/hammertime
+# This fork works only with MRI 1.9.2+ and RBX
+# Adds support for starting a Pry session at the call site of the exception.
+
 require 'thread'
 require 'highline'
+require 'pry'
+require 'binding_of_caller'
 
 module Hammertime
   def self.ignored_errors
@@ -96,9 +105,8 @@ module Hammertime
             false
           end
         end
-        menu.choice "Console (start an IRB session)" do
-          require 'irb'
-          IRB.start
+        menu.choice "Console (start a PRY session)" do
+          yield.pry
           false
         end
       end
@@ -113,11 +121,13 @@ module Hammertime
   end
 
   def fail(*args)
-    hammertime_raise(*args)
+    caller_binding = binding.of_caller(1)
+    hammertime_raise(*args) { caller_binding } 
   end
 
   def raise(*args)
-    hammertime_raise(*args)
+    caller_binding = binding.of_caller(1)    
+    hammertime_raise(*args) { caller_binding } 
   end
 
   private
