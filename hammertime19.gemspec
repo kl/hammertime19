@@ -2,10 +2,10 @@
 
 Gem::Specification.new do |s|
   s.name = "hammertime19"
-  s.version = "0.0.4"
+  s.version = "0.0.5"
 
   s.authors = ["Kalle Lindstrom"]
-  s.date = "2012-08-20"
+  s.date = "2012-08-22"
   s.description = "When this library is required, it replaces the default Ruby exception-raising\nbehavior.  When an error is raised, the developer is presented with a menu\nenabling them to ignore the error, view a stack trace, debug the error using IRB\nor ruby-debug, and more.\n"
   s.email = "lindstrom.kalle@gmail.com"
   s.extra_rdoc_files = [
