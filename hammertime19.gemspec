@@ -30,4 +30,7 @@ Gem::Specification.new do |s|
   s.add_dependency("highline", ["~> 1.5"])
   s.add_dependency("pry", ">= 0.9.10")
   s.add_dependency("binding_of_caller", ">= 0.6.7")
+
+  s.add_development_dependency("rake")
+  s.add_development_dependency("minitest")
 end
