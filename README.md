@@ -39,7 +39,7 @@ end
 
 When an error is raised, a menu of possible actions will be presented at the console:
 
-```ruby
+```
 === Stop! Hammertime. ===
 An error has occurred at example.rb:4:in `raise_runtime_error'
 The error is: #<RuntimeError: Oh no!>
@@ -55,7 +55,7 @@ What now?
 
 This enables a fix-and-continue style of development:
 
-```ruby
+```
 $ ruby example.rb                                                
 Attempt (1/3)
 
@@ -114,7 +114,7 @@ require 'hammertime19'
 
 Gives you a pry console like this:
 
-```ruby
+```
 === Stop! Hammertime. ===
 A C-level error has occurred at h.rb:2:in `/'
 The error is: <ZeroDivisionError> divided by 0
