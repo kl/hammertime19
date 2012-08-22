@@ -155,3 +155,4 @@ Hammertime.intercept_native = false
 ##Copyright
 
 Copyright (c) 2010 Avdi Grimm. See LICENSE for details.
+
