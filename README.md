@@ -132,7 +132,7 @@ These types of errors cannot be recovered from, so when the pry session ends the
 Hammertime19 doesn't know if the exception will be rescued, so therefore all exceptions that
 are not explicitly raised will be intercepted in this way.
 
-If you find that annoying, you can turn of this feature by calling:
+If you find that annoying, you can turn off this feature by calling:
 
 ```ruby
 Hammertime.intercept_native = false
