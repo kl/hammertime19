@@ -1,13 +1,10 @@
 #encoding: utf-8
 
-require 'rake'
-require 'rake/rdoctask'
+require 'rubygems'
+require 'rake/testtask'
 
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+task :default => [:test]
 
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "hammertime #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
+Rake::TestTask.new(:test) do |t|
+  t.pattern = "spec/*_test.rb"
 end

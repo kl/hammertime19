@@ -14,9 +14,10 @@ require 'binding_of_caller'
 module Hammertime
 
   class << self
-    attr_accessor :intercept_native
+    attr_accessor :intercept_native, :test
   end
   @intercept_native = true
+  @test = false
 
   def self.ignored_errors
     @ignored_errors ||= [LoadError]
@@ -117,7 +118,12 @@ module Hammertime
           false
         end
       end
-      continue = c.choose(&menu_config) until continue
+
+      # Start of the loop that chooses a valid menu option.
+      # This is skipped if Hammertime.test is set to true.
+      unless ::Hammertime.test
+        continue = c.choose(&menu_config) until continue
+      end
     end
   ensure
     ::Hammertime.stopped = false
