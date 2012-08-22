@@ -98,7 +98,7 @@ Attempt (3/3)
 No error raised
 ```
 
-About non-explicitly raised errors:
+####About non-explicitly raised errors:
     
 An example of a non-explicitly raised error is if you divide by 0 which creates a
 ZeroDivisionError.
