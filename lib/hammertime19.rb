@@ -1,9 +1,10 @@
 #encoding: utf-8
 
-# https://github.com/kl/hammertime
+# https://github.com/kl/hammertime19
 # Forked from https://github.com/avdi/hammertime
 # This fork works only with MRI 1.9.2+ and RBX
-# Adds support for starting a Pry session at the call site of the exception.
+# Adds support for starting a Pry session at the call site of the exception
+# and interception (not recovering from) non-raised exceptions.
 
 require 'thread'
 require 'highline'
@@ -11,6 +12,12 @@ require 'pry'
 require 'binding_of_caller'
 
 module Hammertime
+
+  class << self
+    attr_accessor :intercept_native
+  end
+  @intercept_native = true
+
   def self.ignored_errors
     @ignored_errors ||= [LoadError]
   end
@@ -161,6 +168,43 @@ module Hammertime
     end
   end
 
+end
+
+#
+# Modifies the Exception class so that all low level errors
+# (errors that are not explicitly raised) are intercepted
+# and a pry session is started at the error source location.
+# Note it is not (yet?) possible to recover from these
+# errors. After the pry session is over the program exits.
+#
+unless ::Object < Hammertime
+  class Exception
+
+    alias_method :exception_hammertime19_orig, :exception
+    def exception(*args, &block)
+      if ::Hammertime.intercept_native
+
+        # When binding.of_caller(1).pry is called several exceptions
+        # are raised but we only want to start a pry session on the
+        # first (original) exception.
+        # We also don't want to start a pry session if the exception
+        # originates from the hammertime library itself (for example
+        # when hammertime tries to require ruby-debug)  
+        unless caller.any? { |t| t.include?("pry/core_extensions.rb") || t.include?("hammertime_raise") }
+
+          puts "\n"
+          puts "=== Stop! Hammertime. ==="
+          puts "A C-level error has occurred at #{caller(2).first}"
+          puts "The error is: <#{self.class}> #{self.message}"
+
+          binding.of_caller(1).pry
+        end
+      end
+
+      # Call the original method
+      exception_hammertime19_orig(*args, &block)
+    end
+  end
 end
 
 unless ::Object < Hammertime
