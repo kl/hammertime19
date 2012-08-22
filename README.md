@@ -4,10 +4,10 @@ An interactive error console similar to those found in Lisp and Smalltalk enviro
 
 hammertime19 is a fork of Avid Grimm's hammertime gem: https://github.com/avdi/hammertime
 
-hammertime19 is a Ruby 1.9.2+ (MRI and RBX) only version that adds support for starting a pry (https://github.com/pry/pry)
-session at the exception raise site.
+hammertime19 is a Ruby 1.9.2+ (MRI and RBX) only version that adds the following features:
 
-hammertime19 also adds basic support for intercepting C-level based exceptions.
+* support for starting a pry (https://github.com/pry/pry) session at the exception raise site.
+* basic support for intercepting C-level based exceptions.
 
 ##Install
 
