@@ -7,6 +7,8 @@ hammertime19 is a fork of Avid Grimm's hammertime gem: https://github.com/avdi/h
 hammertime19 is a Ruby 1.9.2+ (MRI and RBX) only version that adds support for starting a pry (https://github.com/pry/pry)
 session at the exception raise site.
 
+hammertime19 also adds basic support for intercepting C-level based exceptions.
+
 == Install
 
 gem install hammertime19
@@ -81,7 +83,7 @@ This enables a fix-and-continue style of development:
     4. Permit by line (don't ask about future errors raised from this point)
     5. Backtrace (show the call stack leading up to the error)
     6. Debug (start a debugger)
-    7. Console (start an IRB session)
+    7. Console (start a pry session)
     What now?
     2
     No error raised
@@ -90,13 +92,47 @@ This enables a fix-and-continue style of development:
     Attempt (3/3)
     No error raised
 
+About non-explicitly raised errors:
+    
+    An example of a non-explicitly raised error is if you divide by 0 which creates a
+    ZeroDivisionError.
+    Hammertime19 cannot process these errors in the same way as user raised errors can be processed.
+    However, they can be intercepted, and a pry session can be started at the exception site.
+
+    For example running this code:
+
+    require 'hammertime19'
+    1 / 0
+
+    Gives you a pry console like this:
+
+    === Stop! Hammertime. ===
+    A C-level error has occurred at h.rb:2:in `/'
+    The error is: <ZeroDivisionError> divided by 0
+
+    From: h.rb @ line 2 :
+
+        1: require 'hammertime19.'
+     => 2: 1 / 0
+
+    [1] pry(main)>
+
+    These types of errors cannot be recovered from, so when the pry session ends the program exits.
+
+    Hammertime19 doesn't know if the exception will be rescued, so therefore all exceptions that
+    are not explicitly raised will be intercepted in this way.
+
+    If you find that annoying, you can turn of this feature by calling:
+
+    Hammertime.intercept_native = false
+
 == Known Bugs
 
-* Hammertime cannot intercept exceptions which are raised from native code.
+* Hammertime19 cannot recover from errors that are raised from native code.
+* Hammertime19 cannot distinguish between native code exceptions that will be rescued and those that won't.
 
 == TODO
 
-* Better integration with IRB to enable a "Retry" option.
 * Tests
 
 == Dependencies
