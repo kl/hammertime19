@@ -1,5 +1,4 @@
 [![Build Status](https://secure.travis-ci.org/kl/hammertime19.png)](http://travis-ci.org/kl/data-writer)
-
 #hammertime19
 
 An interactive error console similar to those found in Lisp and Smalltalk environments.
