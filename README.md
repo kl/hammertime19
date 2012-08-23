@@ -1,4 +1,4 @@
-https://secure.travis-ci.org/kl/hammertime19.png
+[![Build Status](https://secure.travis-ci.org/kl/hammertime19.png)](http://travis-ci.org/kl/data-writer)
 
 #hammertime19
 
